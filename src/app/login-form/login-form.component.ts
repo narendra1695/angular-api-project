@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserAuthService } from '../user-auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login-form',
@@ -10,9 +11,15 @@ export class LoginFormComponent implements OnInit {
   loginURL = "http://testapi.halanx.com/rest-auth/login/";
   errorMsg = "";
 
-  constructor(private httpClient: UserAuthService) { }
+  constructor(private httpClient: UserAuthService, private route: Router,) { }
 
   ngOnInit() {
+    {
+      // redirect to home if already logged in
+      if (this.httpClient.loggedIn()) {
+        this.route.navigate(["dashboard"]);
+      }
+    }
   }
 
   loginFuntion(this: any, formData: any) {
@@ -28,8 +35,7 @@ export class LoginFormComponent implements OnInit {
           localStorage.setItem("key", data.key); // storing the access_token in the local storage for authentication
 
           // navigate user to /game location after successful authentication
-          // this.route.navigate(["game"]);
-
+          this.route.navigate(["dashboard"]);
         },
         error => {
           // console.log("Authentication Failed", error);

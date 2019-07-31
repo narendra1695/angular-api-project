@@ -16,6 +16,10 @@ export class UserAuthService {
       .pipe(catchError(this.errorHandler));
   }
 
+  loggedIn() {
+    return !!localStorage.getItem("key");
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }
