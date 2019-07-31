@@ -34,7 +34,7 @@ export class LoginFormComponent implements OnInit {
           // console.log("Authentication Successful", data.key);
           localStorage.setItem("key", data.key); // storing the access_token in the local storage for authentication
 
-          // navigate user to /game location after successful authentication
+          // navigate user to /dashboard location after successful authentication
           this.route.navigate(["dashboard"]);
         },
         error => {

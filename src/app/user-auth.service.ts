@@ -20,6 +20,11 @@ export class UserAuthService {
     return !!localStorage.getItem("key");
   }
 
+  logoutUser(baseURL: string, key: string) {
+    return this.httpClient.post(baseURL, key)
+      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }
