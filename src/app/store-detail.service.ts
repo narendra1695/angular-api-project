@@ -22,6 +22,11 @@ export class StoreDetailService {
       .pipe(catchError(this.errorHandler));
   }
 
+  showVisits(baseURL: string, params: object) {
+    return this.httpClient.get(baseURL, params)
+      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }

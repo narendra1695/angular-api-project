@@ -1,22 +1,47 @@
-<div class="container mt-5" *ngIf="generated">
+<div class="container mt-5 bg-light" *ngIf="generated">
     <div class="row">
-        <div class="col-4 col-sm-4 pt-3">
-            <img src="{{ storeDetails.store_logo_url }}" alt="Store Logo" width="200">
+        <div class="col-12 col-sm-4 pt-3">
+            <img src="{{ storeDetails.store_logo_url }}" alt="Store Logo" width="120">
         </div>
-        <div class="col-8 col-sm-8">
-            <h1>{{ storeDetails.name }}</h1>
-            <h3><span>{{ storeDetails.category }}</span> : <span>{{ storeDetails.categories_available }}</span></h3>
-            <h5><span>{{ storeDetails.place.street_address }}</span></h5>
-            <h5><span>{{ storeDetails.place.city }}</span></h5>
-            <h5><span>{{ storeDetails.place.state }}</span></h5>
+        <div class="col-12 col-sm-8">
+            <h2>{{ storeDetails.name }}</h2>
+            <h4><span>{{ storeDetails.category }}</span> : <span>{{ storeDetails.categories_available }}</span></h4>
+            <h6><span>{{ storeDetails.place.street_address }}</span></h6>
+            <h6><span>{{ storeDetails.place.city }}</span></h6>
+            <h6><span>{{ storeDetails.place.state }}</span></h6>
         </div>
     </div>
-</div>
 
-<div class="container">
-    <div class="row">
-        <div class="col-12 col-sm-12" *ngFor="let x of hourDetails">
-            <span class="font-weight-bold text-uppercase">{{ x.weekday }}</span> :: <span>{{ x.from_hour }}</span> - <span>{{ x.to_hour }}</span>
-        </div>
+
+    <div class="list-group mt-2" *ngFor="let x of hourDetails">
+        <p class="list-group-item list-group-item-action list-group-item-success"><span class="font-weight-bold text-uppercase">{{ x.weekday }}</span> :: <span>{{ x.from_hour }}</span> - <span>{{ x.to_hour }}</span></p>
     </div>
+
+
+    <button class="btn btn-primary w-100 front-weight-bold text-uppercase my-2" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        show visits
+    </button>
+
+
+    <div class="collapse my-3" id="collapseExample">
+        <form #subDate="ngForm" (ngSubmit)="submitDate(subDate.value)">
+
+            <label for="from_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">starting from: </label>
+            <input class="form-control col-12 col-sm-12" required type="date" name="from_date" ngModel />
+
+            <label for="to_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">till: </label>
+            <input class="form-control col-12 col-sm-12" required type="date" name="to_date" ngModel />
+
+            <button class="btn btn-success text-uppercase col-12 col-sm-12 mt-4 mt-sm-4" type="submit" value="submit">
+            count
+        </button>
+
+        </form>
+    </div>
+
+
+    <div class="list-group my-2" *ngFor="let x of visitDetails">
+        <p class="list-group-item list-group-item-action list-group-item-success"><span class="text-uppercase">{{ x.date }}</span> :: <span class="font-weight-bold text-uppercase">{{ x.count }}</span></p>
+    </div>
+
 </div>
