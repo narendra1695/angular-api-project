@@ -47,7 +47,6 @@ export class StoreDetailComponent implements OnInit {
         error => {
           console.log("Fetching data failed...", error);
           this.generated = false;
-          // this.errorMsg = error.statusText
         }
       );
   }
