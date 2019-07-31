@@ -1,1 +1,17 @@
-<p>login-form works!</p>
+<form #login="ngForm" (ngSubmit)="loginFuntion(login.value)" novalidate>
+
+    <label for="username" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">username: </label>
+    <input class="form-control col-12 col-sm-12" required #name="ngModel" [class.is-invalid]="name.invalid && name.touched" type="text" name="name" placeholder="Enter username" aria-label="Enter username" ngModel />
+
+    <label for="password" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0 pt-2">password: </label>
+    <input class="form-control col-12 col-sm-12" required #password="ngModel" [class.is-invalid]="password.invalid && password.touched" type="password" name="password" placeholder="Enter password" aria-label="Enter password" ngModel />
+
+    <div class="alert alert-danger mt-4 mb-0" *ngIf="errorMsg">
+        {{ errorMsg }}
+    </div>
+
+    <button class="btn btn-success text-uppercase col-12 col-sm-12 mt-4 mt-sm-4" type="submit" value="submit">
+            login
+    </button>
+
+</form>
