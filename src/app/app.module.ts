@@ -7,14 +7,17 @@ import { LoginFormComponent } from './login-form/login-form.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from "@angular/common/http";
+import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { StoreDetailComponent } from './store-detail/store-detail.component';
+import { CustomInterceptor } from './custom-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
     LoginFormComponent,
     PageNotFoundComponent,
-    DashboardComponent
+    DashboardComponent,
+    StoreDetailComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +25,11 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [{
+    provide: HTTP_INTERCEPTORS,
+    useClass: CustomInterceptor,
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

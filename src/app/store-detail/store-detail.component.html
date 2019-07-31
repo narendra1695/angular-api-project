@@ -1,0 +1,14 @@
+<div class="container mt-5" *ngIf="generated">
+    <div class="row">
+        <div class="col-4 col-sm-4 pt-3">
+            <img src="{{ storeDetails.store_logo_url }}" alt="Store Logo" width="200">
+        </div>
+        <div class="col-8 col-sm-8">
+            <h1>{{ storeDetails.name }}</h1>
+            <h3><span>{{ storeDetails.category }}</span> : <span>{{ storeDetails.categories_available }}</span></h3>
+            <h5><span>{{ storeDetails.place.street_address }}</span></h5>
+            <h5><span>{{ storeDetails.place.city }}</span></h5>
+            <h5><span>{{ storeDetails.place.state }}</span></h5>
+        </div>
+    </div>
+</div>

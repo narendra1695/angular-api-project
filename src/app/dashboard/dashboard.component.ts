@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class DashboardComponent implements OnInit {
   logoutURL = "http://testapi.halanx.com/rest-auth/logout/";
 
-  constructor(private httpClient: UserAuthService, private route: Router, ) { }
+  constructor(private httpClient: UserAuthService, private route: Router) { }
 
   ngOnInit() {
   }
