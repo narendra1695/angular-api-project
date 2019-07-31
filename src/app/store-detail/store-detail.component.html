@@ -12,3 +12,11 @@
         </div>
     </div>
 </div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-sm-12" *ngFor="let x of hourDetails">
+            <span class="font-weight-bold text-uppercase">{{ x.weekday }}</span> :: <span>{{ x.from_hour }}</span> - <span>{{ x.to_hour }}</span>
+        </div>
+    </div>
+</div>

@@ -17,6 +17,11 @@ export class StoreDetailService {
       .pipe(catchError(this.errorHandler));
   }
 
+  storeHoursDetails(baseURL: string) {
+    return this.httpClient.get(baseURL)
+      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }
