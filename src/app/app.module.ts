@@ -3,14 +3,14 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginFormComponent } from './login-form/login-form.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginFormComponent } from './layouts/login-form/login-form.component';
+import { PageNotFoundComponent } from './layouts/page-not-found/page-not-found.component';
 
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { StoreDetailComponent } from './store-detail/store-detail.component';
-import { CustomInterceptor } from './custom-interceptor';
+import { DashboardComponent } from './layouts/dashboard/dashboard.component';
+import { StoreDetailComponent } from './layouts/store-detail/store-detail.component';
+import { CustomInterceptor } from './helper/custom-interceptor';
 @NgModule({
   declarations: [
     AppComponent,
