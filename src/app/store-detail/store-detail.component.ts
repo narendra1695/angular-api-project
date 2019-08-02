@@ -13,9 +13,9 @@ export class StoreDetailComponent implements OnInit {
   storeVisitURL = "http://testapi.halanx.com/stores/dashboard/plots/?visits=true";
 
   generated: boolean = true;
-  private storeDetails = [];
-  private hourDetails = [];
-  private visitDetails = [];
+  storeDetails: any;
+  hourDetails: any;
+  visitDetails: any;
   
   constructor(private httpClient: StoreDetailService) { }
 
