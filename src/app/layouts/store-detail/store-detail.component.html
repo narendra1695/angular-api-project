@@ -17,30 +17,69 @@
         <p class="list-group-item list-group-item-action list-group-item-success"><span class="font-weight-bold text-uppercase">{{ x.weekday }}</span> :: <span>{{ x.from_hour }}</span> - <span>{{ x.to_hour }}</span></p>
     </div>
 
-    <button class="btn btn-primary w-100 front-weight-bold text-uppercase my-2" type="button" data-toggle="collapse" data-target="#checkVisits" aria-expanded="false" aria-controls="collapseExample">
-        show visits
+    <button class="btn btn-primary w-100 front-weight-bold text-uppercase my-2" type="button" data-toggle="collapse" data-target="#updateStoreHours" aria-expanded="false" aria-controls="collapseExample">
+        update store hours
     </button>
 
+    <div class="container collapse" id="updateStoreHours">
+        <form #updateHrs="ngForm" (ngSubmit)="updateHours(updateHrs.value)">
 
-    <div class="collapse my-3" id="checkVisits">
-        <form #subDate="ngForm" (ngSubmit)="submitDate(subDate.value)">
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">monday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_m" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_m" ngModel />
 
-            <label for="from_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">starting from: </label>
-            <input class="form-control col-12 col-sm-12" required type="date" name="from_date" ngModel />
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">tuesday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_t" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_t" ngModel />
 
-            <label for="to_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">till: </label>
-            <input class="form-control col-12 col-sm-12" required type="date" name="to_date" ngModel />
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">wednesday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_w" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_w" ngModel />
+
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">thursday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_th" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_th" ngModel />
+
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">friday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_f" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_f" ngModel />
+
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">saturday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_sa" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_sa" ngModel />
+
+            <label for="weekdays" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">sunday</label>
+            <input class="form-control col-12 col-sm-12 mb-1" required type="time" name="from_time_su" ngModel />
+            <input class="form-control col-12 col-sm-12" required type="time" name="to_time_su" ngModel />
+
 
             <button class="btn btn-success text-uppercase col-12 col-sm-12 mt-4 mt-sm-4" type="submit" value="submit">
-            count
-        </button>
+                count
+            </button>
 
         </form>
     </div>
 
 
-    <div class="list-group my-2" *ngFor="let x of visitDetails">
-        <p class="list-group-item list-group-item-action list-group-item-success"><span class="text-uppercase">{{ x.date }}</span> :: <span class="font-weight-bold text-uppercase">{{ x.count }}</span></p>
+    <button class="btn btn-primary w-100 front-weight-bold text-uppercase my-2" type="button" data-toggle="collapse" data-target="#checkVisits" aria-expanded="false" aria-controls="collapseExample">
+        show visits
+    </button>
+
+    <div class="collapse my-3" id="checkVisits">
+
+        <label for="from_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">starting from: </label>
+        <input class="form-control col-12 col-sm-12" required type="date" name="from_date" value="2019-01-01" disabled />
+
+        <label for="to_date" class="font-weight-bold col-12 col-sm-12 text-uppercase p-0">till: </label>
+        <input class="form-control col-12 col-sm-12" required type="date" name="to_date" value="2019-05-01" #visitTill />
+
+        <button class="btn btn-success text-uppercase col-12 col-sm-12 mt-4 mt-sm-4" type="submit" (click)="submitDate(visitTill.value)">
+            count
+        </button>
+
+        <div class="list-group my-2" *ngFor="let x of visitDetails">
+            <p class="list-group-item list-group-item-action list-group-item-success"><span class="text-uppercase">{{ x.date }}</span> :: <span class="font-weight-bold text-uppercase">{{ x.count }}</span></p>
+        </div>
     </div>
 
 </div>

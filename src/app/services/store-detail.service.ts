@@ -28,6 +28,11 @@ export class StoreDetailService {
       .pipe(catchError(this.errorHandler));
   }
 
+  updateStoreHours(baseURL: string, value: object, options: any) {
+    return this.httpClient.patch(baseURL, value, options)
+      .pipe(catchError(this.errorHandler));
+  }
+
   errorHandler(error: HttpErrorResponse) {
     return throwError(error);
   }
