@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { StoreDetailService } from '../../services/store-detail.service';
 import { HttpParams, HttpHeaders } from "@angular/common/http";
 
+// integration import for charts - canvasjs
+import * as CanvasJS from '../../canvasjs.min';
+
 @Component({
   selector: 'app-store-detail',
   templateUrl: './store-detail.component.html',
@@ -58,8 +61,8 @@ export class StoreDetailComponent implements OnInit {
       {
         "id": 1,
         "weekday": "Monday",
-        "from_hour": formData.from_time_m+":00",
-        "to_hour": formData.to_time_m+":00",
+        "from_hour": formData.from_time_m + ":00",
+        "to_hour": formData.to_time_m + ":00",
         "place": 1
       },
       {
@@ -111,7 +114,7 @@ export class StoreDetailComponent implements OnInit {
     });
     let options = { headers: headers };
 
-    this.httpClient.updateStoreHours(this.storeHoursURL, value , { options }).subscribe(
+    this.httpClient.updateStoreHours(this.storeHoursURL, value, { options }).subscribe(
       data => {
         this.ngOnInit();
       }, error => {
@@ -128,6 +131,23 @@ export class StoreDetailComponent implements OnInit {
       .showVisits(this.storeVisitURL, { params }).subscribe(
         data => {
           this.visitDetails = data.visits;
+
+          let chart = new CanvasJS.Chart("chartContainer", {
+            animationEnabled: true,
+            title: {
+              text: "Show below is the date vs nnumber of visits bar graph representation"
+            },
+            data: [{
+              type: "column",
+              dataPoints: [
+                { y: this.visitDetails[0].count, label: this.visitDetails[0].date },
+                { y: this.visitDetails[1].count, label: this.visitDetails[1].date },
+                { y: this.visitDetails[2].count, label: this.visitDetails[2].date }
+              ]
+            }]
+          });
+          chart.render();
+
         },
         error => {
           console.log("Fetching data failed...", error);
